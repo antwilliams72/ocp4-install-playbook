@@ -18,7 +18,11 @@ vcsa_defaultDatastore: "Vmdata2"
 vcsa_network: "VM Network"
 vcsa_username: "administrator@k1ckr0cks.local"
 vcsa_url: "vcsa.k1ckr0cks.local"
-ocp_imageContentSources:
+clean_install_dir: true
+mirror_repo: false
+download: true
+install: false
+## ocp_imageContentSources:
   nexus.teklocal.net/ocp4/openshift4:
     - quay.io/openshift-release-dev/ocp-release
     - quay.io/openshift-release-dev/ocp-v4.0-art-dev
