@@ -43,6 +43,7 @@ sshKey: |
 additionalTrustBundle: |
 {{ additionalTrustBundle| indent( width=2, indentfirst=True) }}
 {% endif %}
+{% if imageContentSources is defined %}
 imageContentSources:
 {% for reg, repos in ocp_imageContentSources.items() %}
 {% for repo in repos %}
@@ -51,3 +52,4 @@ imageContentSources:
   source: {{ repo }}
 {% endfor %}
 {% endfor %}
+{% endif %}

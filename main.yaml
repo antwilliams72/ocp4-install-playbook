@@ -2,9 +2,9 @@
 - hosts: localhost
   vars:
     ## additionalTrustBundle: "{{ lookup('hashi_vault', 'secret=secret/ocp4/ca-bundle:cert token={{ vtoken }} url=http://provisioner.teklocal.net:8200').replace('\\n', '\n') }}"
-    sshKey: "{{ lookup('hashi_vault', 'secret=secret/ocp4/sshKey:key token={{ vtoken }} url=http://provisioner.teklocal.net:8200').replace('\\n', '\n') }}"
-    pullSecret: "{{ lookup('hashi_vault', 'secret=secret/ocp4/pullSecret:auths token={{ vtoken }} url=http://provisioner.teklocal.net:8200')|string }}"
-    vcsa_password: "{{ lookup('hashi_vault', 'secret=secret/ocp4/vcsa_password:pass token={{ vtoken }} url=http://provisioner.teklocal.net:8200') }}"
+    sshKey: "{{ lookup('hashi_vault', 'secret=secret/ocp4/sshKey:key token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200').replace('\\n', '\n') }}"
+    pullSecret: "{{ lookup('hashi_vault', 'secret=secret/ocp4/pullSecret:auths token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200')|string }}"
+    vcsa_password: "{{ lookup('hashi_vault', 'secret=secret/ocp4/vcsa_password:pass token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200') }}"
 
   tasks:
     - name: Remove old install dir if it exists
@@ -24,11 +24,10 @@
         state: directory
       when: not install_dir_stat.stat.exists
 
-    - name: Create openshift install file
+    - name: Create openshift install file 
       template:
         src: "templates/install-config.yaml.j2"
         dest: "{{ install_path }}/install-config.yaml"
-      with_dict: "{{ocp_imageContentSources}}"
 
     # - name: Get release into local repo
     #   shell: |
