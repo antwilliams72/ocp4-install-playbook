@@ -2,11 +2,11 @@
 - hosts: localhost
   vars:
     ## additionalTrustBundle: "{{ lookup('hashi_vault', 'secret=secret/ocp4/ca-bundle:cert token={{ vtoken }} url=http://provisioner.teklocal.net:8200').replace('\\n', '\n') }}"
-    sshKey: "{{ lookup('hashi_vault', 'secret=secret/ocp4/sshKey:key token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200').replace('\\n', '\n') }}"
-    pullSecret: "{{ lookup('hashi_vault', 'secret=secret/ocp4/pullSecret:auths token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200')|string }}"
-    vcsa_password: "{{ lookup('hashi_vault', 'secret=secret/ocp4/vcsa_password:pass token={{ vtoken }} url=http://kr-vault1.k1ckr0cks.local:8200') }}"
+    sshKey: "{{ lookup('hashi_vault', 'secret=secret/data/ocp4/sshKey:data token={{ vtoken }} url=http://vault.k1ckr0cks.local:8200').replace('\\n', '\n') }}"
+    pullSecret: "{{ lookup('hashi_vault', 'secret=secret/data/ocp4/pullSecret:data token={{ vtoken }} url=http://vault.k1ckr0cks.local:8200')|string }}"
+    vcsa_password: "{{ lookup('hashi_vault', 'secret=secret/data/ocp4/vcsa_password:data token={{ vtoken }} url=http://vault.k1ckr0cks.local:8200') }}"
 
-  tasks:
+  task
     - name: Remove old install dir if it exists
       file:
         path: "{{ install_path }}"

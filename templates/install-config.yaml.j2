@@ -32,13 +32,13 @@ platform:
     defaultDatastore: {{ vcsa_defaultDatastore }}
     ingressVIP: {{ ocp_ingressVIP }}
     network: {{ vcsa_network }}
-    password: {{ vcsa_password }}
+    password: {{ vcsa_password[pass] }}
     username: {{ vcsa_username }}
     vCenter: {{ vcsa_url }}
 publish: External
-pullSecret: '{{ pullSecret|trim }}'
+pullSecret: '{{ pullSecret[auths]|trim }}'
 sshKey: |
-{{ sshKey| indent( width=2, indentfirst=True) }}
+{{ sshKey[key]| indent( width=2, indentfirst=True) }}
 {% if additionalTrustBundle is defined %}
 additionalTrustBundle: |
 {{ additionalTrustBundle| indent( width=2, indentfirst=True) }}
